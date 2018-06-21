@@ -11,7 +11,6 @@ public class StandardCalculator extends CalculateA {
     public void Commander() {
         this.expressions = this.expressions.replaceAll(" ", "");
         makePostfixE();
-        System.out.println(this.expressions);
         System.out.println("Result is : " + Calculate());
     }
 
@@ -23,7 +22,8 @@ public class StandardCalculator extends CalculateA {
     }
 
     private void makePostfixE() {
-        String tmp = "";
+//        String tmp = "";
+        StringBuilder tmp = new StringBuilder();
         Stack stk = new Stack();
         boolean flag = false;
 
@@ -32,52 +32,51 @@ public class StandardCalculator extends CalculateA {
 
             if (c == '*' || c == '/') {
                 while (!stk.is_empty() && prior((char) stk.top()) >= prior(c)) {
-                    tmp += stk.top() + " ";
+                    tmp.append(stk.top());
                     stk.pop();
                 }
                 stk.push(c);
             } else if (c == '+') {
                 if (i - 1 >= 0 && Character.isDigit(this.expressions.charAt(i - 1))) {
                     while (!stk.is_empty() && prior((char) stk.top()) >= prior(c)) {
-                        tmp += stk.top() + " ";
+                        tmp.append(stk.top());
                         stk.pop();
                     }
                     stk.push(c);
                 }
             } else if (c == '-') {
                 if (i == 0) {
-                    tmp += "-";
+                    tmp.append('-');
                 } else if (i - 1 >= 0 && Character.isDigit(this.expressions.charAt(i - 1))) {
                     while (!stk.is_empty() && prior((char) stk.top()) >= prior(c)) {
-                        tmp += stk.top() + " ";
+                        tmp.append(stk.top());
                         stk.pop();
                     }
                     stk.push(c);
                 } else {
-                    tmp += '-';
+                    tmp.append('-');
                 }
             } else if (c == '(') {
                 stk.push(c);
             } else if (c == ')') {
                 while ((char) stk.top() != '(') {
-                    tmp += stk.top();
+                    tmp.append(stk.top());
                     stk.pop();
                 }
                 stk.pop();
             } else if (Character.isDigit(c)) {
-                tmp += c;
+                tmp.append(c);
                 flag = true;
                 continue;
             }
             if (flag)
-                tmp += " ";
+                tmp.append(" ");
         }
-        tmp += " ";
         while (!stk.is_empty()) {
-            tmp += (stk.top() + " ");
+            tmp.append(stk.top());
             stk.pop();
         }
-        this.expressions = tmp;
+        this.expressions = tmp.toString();
     }
 
     private double BinaryOperator(double or1, double or2, char ch) {
@@ -93,7 +92,7 @@ public class StandardCalculator extends CalculateA {
 
     public double Calculate() {
         Stack stk = new Stack();
-        String s1 = "";
+        StringBuilder s1 = new StringBuilder();
 
         int length = this.expressions.length();
         for (int i = 0; i < length; ++i) {
@@ -102,12 +101,12 @@ public class StandardCalculator extends CalculateA {
                 continue;
             } else if (Character.isDigit(c)) {
                 if (Character.isDigit(this.expressions.charAt(i + 1))) {
-                    s1 += c;
+                    s1.append(c);
                     continue;
                 } else {
-                    s1 += c;
-                    stk.push(Double.parseDouble(s1));
-                    s1 = "";
+                    s1.append(c);
+                    stk.push(Double.parseDouble(s1.toString()));
+                    s1.setLength(0);
                 }
             } else if (c == '+' || c == '*' || c == '/' || c == '-') {
                 double ord1 = (double) stk.pop();
