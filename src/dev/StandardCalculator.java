@@ -1,6 +1,6 @@
 package dev;
 
-public class StandardCalculator extends Calculate {
+public class StandardCalculator extends CalculateA {
     private String expressions;
     int idx;
 
@@ -36,16 +36,12 @@ public class StandardCalculator extends Calculate {
                 }
                 stk.push(c);
             } else if (c == '+') {
-                if (i == 0) {
-                    // tmp += "+";
-                } else if (i - 1 >= 0 && Character.isDigit(this.expressions.charAt(i - 1))) {
+            	if (i - 1 >= 0 && Character.isDigit(this.expressions.charAt(i - 1))) {
                     while (!stk.is_empty() && prior((char) stk.top()) >= prior(c)) {
                         tmp += stk.top() + " ";
                         stk.pop();
                     }
                     stk.push(c);
-                } else {
-                    // tmp += "+";
                 }
             } else if (c == '-') {
                 if (i == 0) {
@@ -112,15 +108,10 @@ public class StandardCalculator extends Calculate {
                     stk.push(Double.parseDouble(s1));
                     s1 = "";
                 }
-            } else if (c == '+' || c == '*' || c == '/') {
+            } else if (c == '+' || c == '*' || c == '/' || c == '-') {
                 double ord1 = (double) stk.pop();
                 double ord2 = (double) stk.pop();
                 stk.push(BinaryOperator(ord2, ord1, c));
-            }
-            else if(c == '-') {
-                if(Character.isDigit(this.expressions.charAt(i + 1))) {
-                    s1 += '-';
-                }
             }
         }
         return ((double) stk.pop());
