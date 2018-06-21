@@ -1,6 +1,6 @@
 package dev;
 
-public class Stack implements StackI{
+public class Stack implements StackI {
     private static long size = 0;
     private Node top;
 
@@ -27,7 +27,7 @@ public class Stack implements StackI{
     }
 
     public Object top() {
-        if(!is_empty()) {
+        if (!is_empty()) {
             return this.top.data;
         }
         throw new NullPointerException();

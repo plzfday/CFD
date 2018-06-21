@@ -24,7 +24,7 @@ public class Main {
         switch (menu) {
             case 1:
                 String s = reader.nextLine();
-                s=reader.nextLine();
+                s = reader.nextLine();
                 StandardCalculator sc = new StandardCalculator(s);
                 sc.Commander();
                 break;

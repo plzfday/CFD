@@ -11,6 +11,7 @@ public class StandardCalculator extends CalculateA {
     public void Commander() {
         this.expressions = this.expressions.replaceAll(" ", "");
         makePostfixE();
+        System.out.println(this.expressions);
         System.out.println("Result is : " + Calculate());
     }
 
@@ -36,7 +37,7 @@ public class StandardCalculator extends CalculateA {
                 }
                 stk.push(c);
             } else if (c == '+') {
-            	if (i - 1 >= 0 && Character.isDigit(this.expressions.charAt(i - 1))) {
+                if (i - 1 >= 0 && Character.isDigit(this.expressions.charAt(i - 1))) {
                     while (!stk.is_empty() && prior((char) stk.top()) >= prior(c)) {
                         tmp += stk.top() + " ";
                         stk.pop();
@@ -63,12 +64,12 @@ public class StandardCalculator extends CalculateA {
                     stk.pop();
                 }
                 stk.pop();
-            } else if (Character.isDigit(c)){
+            } else if (Character.isDigit(c)) {
                 tmp += c;
                 flag = true;
                 continue;
             }
-            if(flag)
+            if (flag)
                 tmp += " ";
         }
         tmp += " ";
