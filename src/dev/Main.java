@@ -38,5 +38,6 @@ public class Main {
                 System.out.println("죄송합니다. 아직 구현 중 입니다 ㅠㅠ");
                 break;
         }
+        reader.close();
     }
 }
