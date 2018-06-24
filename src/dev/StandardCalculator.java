@@ -11,7 +11,7 @@ public class StandardCalculator extends CalculateA {
     public void Commander() {
         this.expressions = this.expressions.replaceAll(" ", "");
         makePostfixE();
-        System.out.println("Result is : " + Calculate());
+        System.out.println("Result is : " + Calculate() + "\n\n");
     }
 
     private byte prior(char op) {
