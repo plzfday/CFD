@@ -1,17 +1,21 @@
 package dev;
 
+import java.util.Scanner;
+
 public class StandardCalculator extends CalculateA {
     private String expressions;
-    int idx;
 
-    StandardCalculator(String s) {
-        this.expressions = s;
+    private void showMenu() {
+        System.out.println("=== Standard Calculator ===");
+        System.out.print("Enter expression: ");
+        this.expressions = new Scanner(System.in).nextLine();
     }
 
     public void Commander() {
+        showMenu();
         this.expressions = this.expressions.replaceAll(" ", "");
         makePostfixE();
-        System.out.println("Result is : " + Calculate() + "\n\n");
+        Calculate();
     }
 
     private byte prior(char op) {
@@ -22,7 +26,6 @@ public class StandardCalculator extends CalculateA {
     }
 
     private void makePostfixE() {
-//        String tmp = "";
         StringBuilder tmp = new StringBuilder();
         Stack stk = new Stack();
         boolean flag = false;
@@ -45,14 +48,21 @@ public class StandardCalculator extends CalculateA {
                     stk.push(c);
                 }
             } else if (c == '-') {
+                char cc = this.expressions.charAt(i - 1);
                 if (i == 0) {
                     tmp.append('-');
-                } else if (i - 1 >= 0 && Character.isDigit(this.expressions.charAt(i - 1))) {
+                } else if (i - 1 >= 0 && Character.isDigit(cc)) {
                     while (!stk.is_empty() && prior((char) stk.top()) >= prior(c)) {
                         tmp.append(stk.top());
                         stk.pop();
                     }
                     stk.push(c);
+                } else if (cc == '-') {
+                    stk.pop();
+                    stk.push('+');
+                } else if (cc == '+' || cc == '/' || cc == '*') {
+                    stk.pop();
+                    stk.push('-');
                 } else {
                     tmp.append('-');
                 }
@@ -90,7 +100,7 @@ public class StandardCalculator extends CalculateA {
             return or1 / or2;
     }
 
-    public double Calculate() {
+    public void Calculate() {
         Stack stk = new Stack();
         StringBuilder s1 = new StringBuilder();
 
@@ -114,6 +124,7 @@ public class StandardCalculator extends CalculateA {
                 stk.push(BinaryOperator(ord2, ord1, c));
             }
         }
-        return ((double) stk.pop());
+        double ans = ((double) stk.pop());
+        System.out.println("Result is " + ans);
     }
 }

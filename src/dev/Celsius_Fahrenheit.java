@@ -13,22 +13,18 @@ public class Celsius_Fahrenheit extends CalculateA {
 
     public void Commander() {
         showMenu();
-        if (Calculate() == -1) {
-            System.out.println("이 값들은 정확하지 않아요!\n현재 기능으로는 이 값을 처리할 수 없습니다. 죄송합니다!");
-        }
+        Calculate();
     }
-    public double Calculate() {
+    public void Calculate() {
         switch (this.vFrom) {
             case 1:
-                if(!CelsiusToFahrenheit())
-                    return -1;
+                CelsiusToFahrenheit();
                 break;
             case 2:
-                if(!FahrenheitToCelsius())
-                    return -1;
+                FahrenheitToCelsius();
                 break;
         }
-        return 0;
+        System.out.println("값이 이상하다 싶으시면 확인해보세요. 오버플로우가 난 것일 수도 있습니다.");
     }
 
     private void showMenu() {
@@ -41,31 +37,20 @@ public class Celsius_Fahrenheit extends CalculateA {
         this.vValue = sc.nextDouble();
     }
 
-    private boolean FahrenheitToCelsius() {
+    private void FahrenheitToCelsius() {
         System.out.println("\n\nINPUT: " + this.vValue + " °F\n");
         // Return False when it's error.
 
         double CalculatedAns = (this.vValue - 32) / 1.8;
 
-        if ((CalculatedAns > Double.MAX_VALUE || CalculatedAns < Double.MIN_VALUE))
-            return false;
-
         System.out.println("Result: " + CalculatedAns + " °C\n\n");
-
-        return true;
     }
 
-    private boolean CelsiusToFahrenheit() {
+    private void CelsiusToFahrenheit() {
         System.out.println("\n\nINPUT: " + this.vValue + " °C\n");
 
         double CalculatedAns = (this.vValue * 1.8) + 32;
 
-        // Return False when it's error.
-        if ((CalculatedAns > Double.MAX_VALUE || CalculatedAns < Double.MIN_VALUE))
-            return false;
-
         System.out.println("Result: " + CalculatedAns + " °F\n\n");
-
-        return true;
     }
 }
