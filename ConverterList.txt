@@ -1,0 +1,70 @@
+--- Length ---
+
+centimeter
+- inches
+- feet
+- m
+- km
+- mm
+millimeter
+- inches
+- cm
+- feet
+- m
+kilometer
+- miles
+- m
+- cm
+feet
+- miles
+- meters
+- cm
+- inches
+- mm
+- yards
+yards
+- feet
+- miles
+- meters
+- inches
+inches
+- feet
+- meters
+- yards
+- cm
+- m
+meters
+- feet
+- yards
+- miles
+- cm
+- inches
+- mm
+- km
+miles
+- km
+- meters
+- feet
+- yards
+
+--- weight and mass ---
+
+kilogram(kg)
+- pound(lbs)
+- gram(g)
+- ounce(oz)
+gram(g)
+- ounce(oz)
+- pounds(pound)
+- milligrams(mg)
+- kilogram(kg)
+pound(lbs)
+- ounce(oz)
+- gram(g)
+- kilogram(kg)
+milligram(mg)
+- gram(g)
+ounce(oz)
+- gram(g)
+- pound(lbs)
+- kilogram(kg)
